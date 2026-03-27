@@ -5,10 +5,13 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Verdelia Plant Store",
-  description: "Tienda online de plantas con dashboard administrativo y autenticación JWT.",
+  description:
+    "Tienda online de plantas con dashboard administrativo y autenticación JWT.",
 };
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+export default function RootLayout({
+  children,
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="es">
       <body>
