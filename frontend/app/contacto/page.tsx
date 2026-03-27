@@ -42,7 +42,8 @@ export default function ContactPage() {
           <p className="text-sm uppercase tracking-[0.3em] text-(--primary)">Contacto</p>
           <h1 className="mt-3 text-4xl font-semibold">Conversemos sobre tu próximo espacio verde</h1>
           <p className="mt-4 text-(--muted)">
-            Este apartado queda conectado al backend para almacenar consultas de clientes y permitir seguimiento desde el dashboard.
+            Cuentanos que ambiente quieres crear y te ayudaremos a elegir las
+            plantas, macetas y combinaciones ideales para tu espacio.
           </p>
         </div>
 

@@ -46,10 +46,12 @@ export default function LoginPage() {
     <main className="shell py-12 md:py-20">
       <section className="mx-auto grid max-w-5xl gap-8 md:grid-cols-[0.95fr_1.05fr]">
         <div className="glass-card p-8 md:p-10">
-          <p className="text-sm uppercase tracking-[0.3em] text-(--primary)">Acceso al sistema</p>
-          <h1 className="mt-3 text-4xl font-semibold">Ingresa como cliente o administrador</h1>
+          <p className="text-sm uppercase tracking-[0.3em] text-(--primary)">Tu cuenta Verdelia</p>
+          <h1 className="mt-3 text-4xl font-semibold">Ingresa para seguir tus pedidos o gestionar la tienda</h1>
           <p className="mt-4 text-(--muted)">
-            Por defecto el flujo es de cliente, pero si eliges administrador te llevaremos al dashboard de gestión.
+            Si eres cliente, aqui podras revisar tus pedidos y tus datos. Si
+            administras la tienda, tendras acceso a la gestion del catalogo,
+            pedidos y consultas.
           </p>
           <div className="mt-8 grid gap-4">
             <button
@@ -78,7 +80,7 @@ export default function LoginPage() {
           </button>
           {message && <p className="text-sm text-(--primary)">{message}</p>}
           <div className="rounded-3xl bg-white/70 p-4 text-sm text-(--muted)">
-            <p className="font-medium text-(--foreground)">Usuario de prueba</p>
+            <p className="font-medium text-(--foreground)">Acceso de prueba</p>
             <p>admin@plantstore.com</p>
             <p>Admin123*</p>
           </div>

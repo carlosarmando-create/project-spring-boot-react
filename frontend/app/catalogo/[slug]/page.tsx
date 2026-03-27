@@ -48,7 +48,7 @@ export default async function PlantDetailPage({ params }: Props) {
           <div className="flex flex-wrap gap-3">
             {plant.featured && <span className="rounded-full bg-(--secondary) px-4 py-2 text-sm font-medium text-(--foreground)">Producto destacado</span>}
             <span className="rounded-full bg-(--accent) px-4 py-2 text-sm font-medium text-(--primary)">
-              Disponible en catalogo administrable
+              Ideal para renovar tus espacios
             </span>
           </div>
         </article>

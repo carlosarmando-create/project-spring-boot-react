@@ -34,10 +34,11 @@ export default function AdminDashboardPage() {
   return (
     <main className="shell py-12">
       <section className="mb-8">
-        <p className="text-sm uppercase tracking-[0.3em] text-(--primary)">Dashboard administrativo</p>
-        <h1 className="mt-3 text-5xl font-semibold">Control total de la tienda</h1>
+        <p className="text-sm uppercase tracking-[0.3em] text-(--primary)">Area de gestion</p>
+        <h1 className="mt-3 text-5xl font-semibold">Organiza la experiencia de compra de tus clientes</h1>
         <p className="mt-4 max-w-3xl text-lg text-(--muted)">
-          Gestiona catálogo, pedidos, contactos y permisos desde una sola interfaz.
+          Manten el catalogo actualizado, revisa pedidos y responde consultas
+          desde un solo lugar.
         </p>
       </section>
       <AdminDashboard session={session} />

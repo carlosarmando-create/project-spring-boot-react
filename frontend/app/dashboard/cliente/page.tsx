@@ -35,7 +35,7 @@ export default function CustomerDashboardPage() {
     <main className="shell py-12">
       <section className="mb-8">
         <p className="text-sm uppercase tracking-[0.3em] text-(--primary)">Panel del cliente</p>
-        <h1 className="mt-3 text-5xl font-semibold">Tu espacio para seguir compras y datos</h1>
+        <h1 className="mt-3 text-5xl font-semibold">Tu espacio para seguir tus pedidos y mantener tus datos al dia</h1>
       </section>
       <CustomerDashboard session={session} />
     </main>

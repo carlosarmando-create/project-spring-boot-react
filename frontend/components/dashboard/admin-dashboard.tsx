@@ -230,11 +230,13 @@ export function AdminDashboard({ session }: Props) {
       <section className="glass-card p-6">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
-            <p className="text-sm uppercase tracking-[0.2em] text-(--primary)">Inventario sembrado</p>
-            <h2 className="mt-2 text-2xl font-semibold">Vista compacta del catálogo</h2>
+            <p className="text-sm uppercase tracking-[0.2em] text-(--primary)">Catalogo visible para clientes</p>
+            <h2 className="mt-2 text-2xl font-semibold">Vista compacta de tus productos</h2>
           </div>
           <p className="max-w-xl text-sm text-(--muted)">
-            Aquí puedes revisar rápidamente las plantas registradas con foto, categoría, stock y enlace a su detalle público.
+            Revisa como se presenta cada producto, su disponibilidad y la
+            informacion clave antes de destacarlo o compartirlo con tus
+            clientes.
           </p>
         </div>
         <div className="mt-5 grid gap-4 md:grid-cols-2">

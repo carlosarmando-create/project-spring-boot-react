@@ -8,12 +8,13 @@ export function Hero() {
           Plantas para hogares con estilo
         </p>
         <h1 className="section-title mb-6 max-w-2xl font-semibold">
-          Tu tienda online de plantas con una experiencia fresca, natural y
-          profesional.
+          Plantas y detalles naturales para transformar tus espacios con vida y
+          armonia.
         </h1>
         <p className="mb-8 max-w-xl text-lg leading-8 text-(--muted)">
-          Descubre especies de interior y exterior, accesorios decorativos y un
-          panel administrativo para gestionar tu negocio de forma clara.
+          Descubre especies de interior y exterior, macetas con estilo y
+          opciones pensadas para darle frescura, calma y personalidad a cada
+          rincon de tu hogar u oficina.
         </p>
         <div className="flex flex-wrap gap-4">
           <Link
@@ -26,7 +27,7 @@ export function Hero() {
             href="/iniciar-sesion"
             className="rounded-full border border-(--border) px-6 py-3 font-medium"
           >
-            Acceder al sistema
+            Ingresar
           </Link>
         </div>
       </div>

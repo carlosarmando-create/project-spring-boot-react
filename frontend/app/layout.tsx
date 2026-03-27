@@ -6,7 +6,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Verdelia Plant Store",
   description:
-    "Tienda online de plantas con dashboard administrativo y autenticación JWT.",
+    "Plantas, macetas y accesorios para llenar de vida tus espacios con estilo natural.",
 };
 
 export default function RootLayout({
