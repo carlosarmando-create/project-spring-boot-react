@@ -4,7 +4,7 @@ API REST para una tienda online de plantas con Spring Boot 4, PostgreSQL, JWT y 
 
 ## Requisitos
 
-- Java 21
+- Java 25
 - Maven 3.9+
 - PostgreSQL 15+
 
@@ -23,7 +23,13 @@ CREATE DATABASE plant_store_db;
 4. Ejecutar:
 
 ```bash
-mvn spring-boot:run
+./mvnw spring-boot:run
+```
+
+En Windows PowerShell:
+
+```powershell
+.\mvnw.cmd spring-boot:run
 ```
 
 ## Usuario semilla

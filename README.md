@@ -14,7 +14,7 @@ Proyecto full stack para una tienda online de plantas con dos carpetas principal
 
 ## Requisitos recomendados
 
-- Java 21
+- Java 25
 - Maven 3.9+
 - PostgreSQL 15+
 - Node.js 20.9+

@@ -17,7 +17,7 @@
     <description>API REST para una tienda online de plantas</description>
 
     <properties>
-        <java.version>21</java.version>
+        <java.version>25</java.version>
         <jjwt.version>0.12.6</jjwt.version>
     </properties>
 
@@ -74,6 +74,13 @@
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <proc>full</proc>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>

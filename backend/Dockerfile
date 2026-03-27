@@ -1,7 +1,15 @@
-FROM gcr.io/distroless/java21-debian12:nonroot
+FROM maven:3.9.12-eclipse-temurin-25 AS build
 WORKDIR /app
 
-COPY target/*.jar /app/app.jar
+COPY pom.xml ./
+COPY src ./src
+
+RUN mvn -q -DskipTests package
+
+FROM gcr.io/distroless/java25-debian13:nonroot
+WORKDIR /app
+
+COPY --from=build /app/target/*.jar /app/app.jar
 
 EXPOSE 8080
 
