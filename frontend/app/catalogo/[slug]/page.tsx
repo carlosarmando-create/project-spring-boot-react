@@ -18,7 +18,7 @@ export default async function PlantDetailPage({ params }: Props) {
 
   return (
     <main className="shell py-12 md:py-16">
-      <Link href="/catalogo" className="text-sm uppercase tracking-[0.25em] text-[var(--primary)]">
+      <Link href="/catalogo" className="text-sm uppercase tracking-[0.25em] text-(--primary)">
         Volver al catalogo
       </Link>
 
@@ -31,23 +31,23 @@ export default async function PlantDetailPage({ params }: Props) {
 
         <article className="glass-card grid gap-5 p-8">
           <div>
-            <p className="text-sm uppercase tracking-[0.25em] text-[var(--primary)]">{plant.categoryName}</p>
+            <p className="text-sm uppercase tracking-[0.25em] text-(--primary)">{plant.categoryName}</p>
             <h1 className="mt-3 text-5xl font-semibold">{plant.name}</h1>
-            <p className="mt-3 text-lg text-[var(--muted)]">{plant.shortDescription}</p>
+            <p className="mt-3 text-lg text-(--muted)">{plant.shortDescription}</p>
           </div>
 
-          <div className="grid gap-3 rounded-3xl bg-white/65 p-5 text-sm text-[var(--muted)]">
-            <p><span className="font-semibold text-[var(--foreground)]">Nombre botanico:</span> {plant.botanicalName || "No especificado"}</p>
-            <p><span className="font-semibold text-[var(--foreground)]">Presentacion:</span> {plant.sizeLabel || "Tamaño estándar"}</p>
-            <p><span className="font-semibold text-[var(--foreground)]">Stock disponible:</span> {plant.stock} unidades</p>
-            <p><span className="font-semibold text-[var(--foreground)]">Precio referencial:</span> S/ {Number(plant.price).toFixed(2)}</p>
+          <div className="grid gap-3 rounded-3xl bg-white/65 p-5 text-sm text-(--muted)">
+            <p><span className="font-semibold text-(--foreground)">Nombre botanico:</span> {plant.botanicalName || "No especificado"}</p>
+            <p><span className="font-semibold text-(--foreground)">Presentacion:</span> {plant.sizeLabel || "Tamaño estándar"}</p>
+            <p><span className="font-semibold text-(--foreground)">Stock disponible:</span> {plant.stock} unidades</p>
+            <p><span className="font-semibold text-(--foreground)">Precio referencial:</span> S/ {Number(plant.price).toFixed(2)}</p>
           </div>
 
-          <p className="leading-8 text-[var(--muted)]">{plant.description}</p>
+          <p className="leading-8 text-(--muted)">{plant.description}</p>
 
           <div className="flex flex-wrap gap-3">
-            {plant.featured && <span className="rounded-full bg-[var(--secondary)] px-4 py-2 text-sm font-medium text-[var(--foreground)]">Producto destacado</span>}
-            <span className="rounded-full bg-[var(--accent)] px-4 py-2 text-sm font-medium text-[var(--primary)]">
+            {plant.featured && <span className="rounded-full bg-(--secondary) px-4 py-2 text-sm font-medium text-(--foreground)">Producto destacado</span>}
+            <span className="rounded-full bg-(--accent) px-4 py-2 text-sm font-medium text-(--primary)">
               Disponible en catalogo administrable
             </span>
           </div>

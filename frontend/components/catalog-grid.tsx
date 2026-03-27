@@ -17,24 +17,24 @@ export function CatalogGrid({ plants }: Props) {
           </div>
           <div className="grid gap-4 p-5">
             <div className="flex items-center justify-between gap-3">
-              <span className="rounded-full bg-[var(--accent)] px-3 py-1 text-xs uppercase tracking-[0.2em] text-[var(--primary)]">
+              <span className="rounded-full bg-(--accent) px-3 py-1 text-xs uppercase tracking-[0.2em] text-(--primary)">
                 {plant.categoryName}
               </span>
-              <span className="text-lg font-semibold text-[var(--primary)]">S/ {Number(plant.price).toFixed(2)}</span>
+              <span className="text-lg font-semibold text-(--primary)">S/ {Number(plant.price).toFixed(2)}</span>
             </div>
             <div>
               <h3 className="text-2xl font-semibold">{plant.name}</h3>
-              <p className="mt-2 text-sm text-[var(--muted)]">{plant.botanicalName || "Especie ornamental"}</p>
+              <p className="mt-2 text-sm text-(--muted)">{plant.botanicalName || "Especie ornamental"}</p>
             </div>
-            <p className="text-sm leading-7 text-[var(--muted)]">{plant.shortDescription}</p>
-            <div className="flex flex-wrap gap-2 text-xs uppercase tracking-[0.15em] text-[var(--muted)]">
+            <p className="text-sm leading-7 text-(--muted)">{plant.shortDescription}</p>
+            <div className="flex flex-wrap gap-2 text-xs uppercase tracking-[0.15em] text-(--muted)">
               <span className="rounded-full bg-white/70 px-3 py-2">Stock {plant.stock}</span>
               <span className="rounded-full bg-white/70 px-3 py-2">{plant.sizeLabel || "Tamaño estándar"}</span>
-              {plant.featured && <span className="rounded-full bg-[var(--secondary)] px-3 py-2 text-[var(--foreground)]">Destacada</span>}
+              {plant.featured && <span className="rounded-full bg-(--secondary) px-3 py-2 text-(--foreground)">Destacada</span>}
             </div>
-            <div className="flex items-center justify-between gap-3 border-t border-white/60 pt-4 text-sm text-[var(--muted)]">
+            <div className="flex items-center justify-between gap-3 border-t border-white/60 pt-4 text-sm text-(--muted)">
               <span>Stock: {plant.stock}</span>
-              <Link href={`/catalogo/${plant.slug}`} className="rounded-full border border-[var(--primary)] px-4 py-2 font-medium text-[var(--primary)] transition hover:bg-[var(--primary)] hover:text-white">
+              <Link href={`/catalogo/${plant.slug}`} className="rounded-full border border-(--primary) px-4 py-2 font-medium text-(--primary) transition hover:bg-(--primary) hover:text-white">
                 Ver detalle
               </Link>
             </div>

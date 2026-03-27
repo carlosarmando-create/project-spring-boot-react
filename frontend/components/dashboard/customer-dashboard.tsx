@@ -27,13 +27,13 @@ export function CustomerDashboard({ session }: Props) {
 
   return (
     <div className="grid gap-6">
-      {message && <div className="glass-card px-6 py-4 text-sm text-[var(--primary)]">{message}</div>}
+      {message && <div className="glass-card px-6 py-4 text-sm text-(--primary)">{message}</div>}
 
       <section className="grid gap-6 md:grid-cols-[0.9fr_1.1fr]">
         <div className="glass-card p-6">
-          <p className="text-sm uppercase tracking-[0.2em] text-[var(--primary)]">Mi perfil</p>
+          <p className="text-sm uppercase tracking-[0.2em] text-(--primary)">Mi perfil</p>
           <h2 className="mt-2 text-2xl font-semibold">{profile?.fullName ?? session.fullName}</h2>
-          <div className="mt-5 grid gap-3 text-sm text-[var(--muted)]">
+          <div className="mt-5 grid gap-3 text-sm text-(--muted)">
             <p>Correo: {profile?.email ?? session.email}</p>
             <p>Teléfono: {profile?.phone || "No registrado"}</p>
             <p>Roles: {profile?.roles.join(", ") || session.roles.join(", ")}</p>
@@ -41,9 +41,9 @@ export function CustomerDashboard({ session }: Props) {
         </div>
 
         <div className="glass-card p-6">
-          <p className="text-sm uppercase tracking-[0.2em] text-[var(--primary)]">Estado general</p>
+          <p className="text-sm uppercase tracking-[0.2em] text-(--primary)">Estado general</p>
           <h2 className="mt-2 text-2xl font-semibold">Tus pedidos recientes</h2>
-          <p className="mt-4 text-[var(--muted)]">
+          <p className="mt-4 text-(--muted)">
             Desde aquí el cliente puede revisar compras realizadas usando la misma autenticación JWT del backend.
           </p>
         </div>
@@ -52,18 +52,18 @@ export function CustomerDashboard({ session }: Props) {
       <section className="glass-card p-6">
         <h2 className="text-2xl font-semibold">Historial de pedidos</h2>
         <div className="mt-5 grid gap-4">
-          {orders.length === 0 && <p className="text-[var(--muted)]">Todavía no tienes pedidos registrados.</p>}
+          {orders.length === 0 && <p className="text-(--muted)">Todavía no tienes pedidos registrados.</p>}
           {orders.map((order) => (
             <article key={order.id} className="rounded-3xl bg-white/70 p-5">
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <div>
                   <p className="font-semibold">Pedido #{order.id}</p>
-                  <p className="text-sm text-[var(--muted)]">{new Date(order.createdAt).toLocaleDateString("es-PE")}</p>
+                  <p className="text-sm text-(--muted)">{new Date(order.createdAt).toLocaleDateString("es-PE")}</p>
                 </div>
-                <span className="rounded-full bg-[var(--accent)] px-4 py-2 text-sm text-[var(--primary)]">{order.status}</span>
+                <span className="rounded-full bg-(--accent) px-4 py-2 text-sm text-(--primary)">{order.status}</span>
               </div>
-              <p className="mt-3 text-sm text-[var(--muted)]">Envío: {order.shippingAddress}</p>
-              <p className="mt-2 text-sm text-[var(--muted)]">Total: S/ {Number(order.totalAmount).toFixed(2)}</p>
+              <p className="mt-3 text-sm text-(--muted)">Envío: {order.shippingAddress}</p>
+              <p className="mt-2 text-sm text-(--muted)">Total: S/ {Number(order.totalAmount).toFixed(2)}</p>
             </article>
           ))}
         </div>

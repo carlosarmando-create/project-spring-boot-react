@@ -25,10 +25,10 @@ export function Navbar() {
     <header className="sticky top-0 z-50">
       <div className="shell pt-4">
         <div className="glass-card flex items-center justify-between gap-4 px-6 py-4">
-          <Link href="/" className="text-xl font-semibold tracking-[0.18em] text-[var(--primary)] uppercase">
+          <Link href="/" className="text-xl font-semibold tracking-[0.18em] text-(--primary) uppercase">
             Verdelia
           </Link>
-          <nav className="hidden items-center gap-6 text-sm text-[var(--muted)] md:flex">
+          <nav className="hidden items-center gap-6 text-sm text-(--muted) md:flex">
             <Link href="/">Inicio</Link>
             <Link href="/catalogo">Catálogo</Link>
             <Link href="/contacto">Contacto</Link>
@@ -37,10 +37,10 @@ export function Navbar() {
           <div className="flex items-center gap-3">
             {session ? (
               <>
-                <span className="hidden text-sm text-[var(--muted)] md:inline">{session.fullName}</span>
+                <span className="hidden text-sm text-(--muted) md:inline">{session.fullName}</span>
                 <button
                   onClick={handleLogout}
-                  className="rounded-full bg-[var(--primary)] px-4 py-2 text-sm font-medium text-white"
+                  className="rounded-full bg-(--primary) px-4 py-2 text-sm font-medium text-white"
                 >
                   Cerrar sesión
                 </button>
@@ -48,7 +48,7 @@ export function Navbar() {
             ) : (
               <Link
                 href="/iniciar-sesion"
-                className="rounded-full bg-[var(--primary)] px-4 py-2 text-sm font-medium text-white"
+                className="rounded-full bg-(--primary) px-4 py-2 text-sm font-medium text-white"
               >
                 Iniciar sesión
               </Link>

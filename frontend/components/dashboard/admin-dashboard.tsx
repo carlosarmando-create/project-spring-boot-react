@@ -161,39 +161,39 @@ export function AdminDashboard({ session }: Props) {
           ["Contactos", contacts.length],
         ].map(([label, value]) => (
           <div key={label} className="glass-card p-6">
-            <p className="text-sm uppercase tracking-[0.2em] text-[var(--muted)]">{label}</p>
-            <p className="mt-3 text-4xl font-semibold text-[var(--primary)]">{value}</p>
+            <p className="text-sm uppercase tracking-[0.2em] text-(--muted)">{label}</p>
+            <p className="mt-3 text-4xl font-semibold text-(--primary)">{value}</p>
           </div>
         ))}
       </section>
 
-      {message && <div className="glass-card px-6 py-4 text-sm text-[var(--primary)]">{message}</div>}
+      {message && <div className="glass-card px-6 py-4 text-sm text-(--primary)">{message}</div>}
 
       <section className="grid gap-6 xl:grid-cols-2">
         <form onSubmit={handlePlantSubmit} className="glass-card grid gap-4 p-6">
           <div>
-            <p className="text-sm uppercase tracking-[0.2em] text-[var(--primary)]">Nuevo producto</p>
+            <p className="text-sm uppercase tracking-[0.2em] text-(--primary)">Nuevo producto</p>
             <h2 className="mt-2 text-2xl font-semibold">Registrar planta</h2>
           </div>
-          <input value={plantForm.name} onChange={(e) => setPlantForm({ ...plantForm, name: e.target.value })} placeholder="Nombre" className="rounded-2xl border border-[var(--border)] bg-white px-4 py-3" required />
-          <input value={plantForm.slug} onChange={(e) => setPlantForm({ ...plantForm, slug: e.target.value })} placeholder="Slug" className="rounded-2xl border border-[var(--border)] bg-white px-4 py-3" required />
-          <input value={plantForm.shortDescription} onChange={(e) => setPlantForm({ ...plantForm, shortDescription: e.target.value })} placeholder="Descripción corta" className="rounded-2xl border border-[var(--border)] bg-white px-4 py-3" required />
-          <textarea value={plantForm.description} onChange={(e) => setPlantForm({ ...plantForm, description: e.target.value })} placeholder="Descripción larga" className="min-h-28 rounded-2xl border border-[var(--border)] bg-white px-4 py-3" required />
+          <input value={plantForm.name} onChange={(e) => setPlantForm({ ...plantForm, name: e.target.value })} placeholder="Nombre" className="rounded-2xl border border-(--border) bg-white px-4 py-3" required />
+          <input value={plantForm.slug} onChange={(e) => setPlantForm({ ...plantForm, slug: e.target.value })} placeholder="Slug" className="rounded-2xl border border-(--border) bg-white px-4 py-3" required />
+          <input value={plantForm.shortDescription} onChange={(e) => setPlantForm({ ...plantForm, shortDescription: e.target.value })} placeholder="Descripción corta" className="rounded-2xl border border-(--border) bg-white px-4 py-3" required />
+          <textarea value={plantForm.description} onChange={(e) => setPlantForm({ ...plantForm, description: e.target.value })} placeholder="Descripción larga" className="min-h-28 rounded-2xl border border-(--border) bg-white px-4 py-3" required />
           <div className="grid gap-4 md:grid-cols-2">
-            <input value={plantForm.price} onChange={(e) => setPlantForm({ ...plantForm, price: e.target.value })} type="number" step="0.01" placeholder="Precio" className="rounded-2xl border border-[var(--border)] bg-white px-4 py-3" required />
-            <input value={plantForm.stock} onChange={(e) => setPlantForm({ ...plantForm, stock: e.target.value })} type="number" placeholder="Stock" className="rounded-2xl border border-[var(--border)] bg-white px-4 py-3" required />
+            <input value={plantForm.price} onChange={(e) => setPlantForm({ ...plantForm, price: e.target.value })} type="number" step="0.01" placeholder="Precio" className="rounded-2xl border border-(--border) bg-white px-4 py-3" required />
+            <input value={plantForm.stock} onChange={(e) => setPlantForm({ ...plantForm, stock: e.target.value })} type="number" placeholder="Stock" className="rounded-2xl border border-(--border) bg-white px-4 py-3" required />
           </div>
           <div className="grid gap-4 md:grid-cols-2">
-            <input value={plantForm.botanicalName} onChange={(e) => setPlantForm({ ...plantForm, botanicalName: e.target.value })} placeholder="Nombre botánico" className="rounded-2xl border border-[var(--border)] bg-white px-4 py-3" />
-            <input value={plantForm.sizeLabel} onChange={(e) => setPlantForm({ ...plantForm, sizeLabel: e.target.value })} placeholder="Tamaño" className="rounded-2xl border border-[var(--border)] bg-white px-4 py-3" />
+            <input value={plantForm.botanicalName} onChange={(e) => setPlantForm({ ...plantForm, botanicalName: e.target.value })} placeholder="Nombre botánico" className="rounded-2xl border border-(--border) bg-white px-4 py-3" />
+            <input value={plantForm.sizeLabel} onChange={(e) => setPlantForm({ ...plantForm, sizeLabel: e.target.value })} placeholder="Tamaño" className="rounded-2xl border border-(--border) bg-white px-4 py-3" />
           </div>
-          <select value={plantForm.categoryId} onChange={(e) => setPlantForm({ ...plantForm, categoryId: e.target.value })} className="rounded-2xl border border-[var(--border)] bg-white px-4 py-3" required>
+          <select value={plantForm.categoryId} onChange={(e) => setPlantForm({ ...plantForm, categoryId: e.target.value })} className="rounded-2xl border border-(--border) bg-white px-4 py-3" required>
             <option value="">Selecciona una categoría</option>
             {categories.map((category) => (
               <option key={category.id} value={category.id}>{category.name}</option>
             ))}
           </select>
-          <input type="file" accept="image/*" onChange={(e) => setPlantForm({ ...plantForm, image: e.target.files?.[0] ?? null })} className="rounded-2xl border border-[var(--border)] bg-white px-4 py-3" />
+          <input type="file" accept="image/*" onChange={(e) => setPlantForm({ ...plantForm, image: e.target.files?.[0] ?? null })} className="rounded-2xl border border-(--border) bg-white px-4 py-3" />
           <div className="flex gap-4">
             <label className="flex items-center gap-2 text-sm">
               <input type="checkbox" checked={plantForm.featured} onChange={(e) => setPlantForm({ ...plantForm, featured: e.target.checked })} />
@@ -204,23 +204,23 @@ export function AdminDashboard({ session }: Props) {
               Activo
             </label>
           </div>
-          <button className="rounded-full bg-[var(--primary)] px-5 py-3 font-medium text-white">Guardar producto</button>
+          <button className="rounded-full bg-(--primary) px-5 py-3 font-medium text-white">Guardar producto</button>
         </form>
 
         <form onSubmit={handleCategorySubmit} className="glass-card grid gap-4 p-6">
           <div>
-            <p className="text-sm uppercase tracking-[0.2em] text-[var(--primary)]">Categorías</p>
+            <p className="text-sm uppercase tracking-[0.2em] text-(--primary)">Categorías</p>
             <h2 className="mt-2 text-2xl font-semibold">Crear categoría</h2>
           </div>
-          <input name="name" placeholder="Nombre de categoría" className="rounded-2xl border border-[var(--border)] bg-white px-4 py-3" required />
-          <input name="slug" placeholder="Slug" className="rounded-2xl border border-[var(--border)] bg-white px-4 py-3" required />
-          <textarea name="description" placeholder="Descripción" className="min-h-28 rounded-2xl border border-[var(--border)] bg-white px-4 py-3" />
-          <button className="rounded-full bg-[var(--secondary)] px-5 py-3 font-medium text-[var(--foreground)]">Crear categoría</button>
+          <input name="name" placeholder="Nombre de categoría" className="rounded-2xl border border-(--border) bg-white px-4 py-3" required />
+          <input name="slug" placeholder="Slug" className="rounded-2xl border border-(--border) bg-white px-4 py-3" required />
+          <textarea name="description" placeholder="Descripción" className="min-h-28 rounded-2xl border border-(--border) bg-white px-4 py-3" />
+          <button className="rounded-full bg-(--secondary) px-5 py-3 font-medium text-(--foreground)">Crear categoría</button>
           <div className="mt-4 grid gap-3">
             {categories.map((category) => (
               <div key={category.id} className="rounded-2xl bg-white/70 px-4 py-3">
                 <p className="font-medium">{category.name}</p>
-                <p className="text-sm text-[var(--muted)]">{category.description}</p>
+                <p className="text-sm text-(--muted)">{category.description}</p>
               </div>
             ))}
           </div>
@@ -230,10 +230,10 @@ export function AdminDashboard({ session }: Props) {
       <section className="glass-card p-6">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
-            <p className="text-sm uppercase tracking-[0.2em] text-[var(--primary)]">Inventario sembrado</p>
+            <p className="text-sm uppercase tracking-[0.2em] text-(--primary)">Inventario sembrado</p>
             <h2 className="mt-2 text-2xl font-semibold">Vista compacta del catálogo</h2>
           </div>
-          <p className="max-w-xl text-sm text-[var(--muted)]">
+          <p className="max-w-xl text-sm text-(--muted)">
             Aquí puedes revisar rápidamente las plantas registradas con foto, categoría, stock y enlace a su detalle público.
           </p>
         </div>
@@ -247,14 +247,14 @@ export function AdminDashboard({ session }: Props) {
                 <div className="min-w-0 flex-1">
                   <div className="flex flex-wrap items-center justify-between gap-3">
                     <p className="text-lg font-semibold">{plant.name}</p>
-                    <span className="text-sm font-medium text-[var(--primary)]">S/ {Number(plant.price).toFixed(2)}</span>
+                    <span className="text-sm font-medium text-(--primary)">S/ {Number(plant.price).toFixed(2)}</span>
                   </div>
-                  <p className="mt-1 text-sm text-[var(--muted)]">{plant.botanicalName || plant.categoryName}</p>
-                  <p className="mt-2 line-clamp-2 text-sm text-[var(--muted)]">{plant.shortDescription}</p>
-                  <div className="mt-3 flex flex-wrap items-center gap-2 text-xs uppercase tracking-[0.15em] text-[var(--muted)]">
+                  <p className="mt-1 text-sm text-(--muted)">{plant.botanicalName || plant.categoryName}</p>
+                  <p className="mt-2 line-clamp-2 text-sm text-(--muted)">{plant.shortDescription}</p>
+                  <div className="mt-3 flex flex-wrap items-center gap-2 text-xs uppercase tracking-[0.15em] text-(--muted)">
                     <span className="rounded-full bg-white px-3 py-2">Stock {plant.stock}</span>
                     <span className="rounded-full bg-white px-3 py-2">{plant.sizeLabel || "Tamaño estándar"}</span>
-                    <Link href={`/catalogo/${plant.slug}`} className="rounded-full border border-[var(--primary)] px-3 py-2 font-medium text-[var(--primary)]">
+                    <Link href={`/catalogo/${plant.slug}`} className="rounded-full border border-(--primary) px-3 py-2 font-medium text-(--primary)">
                       Detalle
                     </Link>
                   </div>
@@ -274,15 +274,15 @@ export function AdminDashboard({ session }: Props) {
                 <div className="flex flex-wrap items-center justify-between gap-3">
                   <div>
                     <p className="font-semibold">Pedido #{order.id}</p>
-                    <p className="text-sm text-[var(--muted)]">{order.customerName} · S/ {Number(order.totalAmount).toFixed(2)}</p>
+                    <p className="text-sm text-(--muted)">{order.customerName} · S/ {Number(order.totalAmount).toFixed(2)}</p>
                   </div>
-                  <select defaultValue={order.status} onChange={(e) => changeOrderStatus(order.id, e.target.value)} className="rounded-full border border-[var(--border)] bg-white px-3 py-2 text-sm">
+                  <select defaultValue={order.status} onChange={(e) => changeOrderStatus(order.id, e.target.value)} className="rounded-full border border-(--border) bg-white px-3 py-2 text-sm">
                     {["PENDING", "CONFIRMED", "SHIPPED", "DELIVERED", "CANCELLED"].map((status) => (
                       <option key={status} value={status}>{status}</option>
                     ))}
                   </select>
                 </div>
-                <div className="mt-4 grid gap-2 text-sm text-[var(--muted)]">
+                <div className="mt-4 grid gap-2 text-sm text-(--muted)">
                   <p>Correo: {order.customerEmail}</p>
                   <p>Teléfono: {order.customerPhone}</p>
                   <p>Pago: {order.paymentMethod}</p>
@@ -310,15 +310,15 @@ export function AdminDashboard({ session }: Props) {
                 <div className="flex flex-wrap items-center justify-between gap-3">
                   <div>
                     <p className="font-semibold">{contact.subject}</p>
-                    <p className="text-sm text-[var(--muted)]">{contact.fullName} · {contact.email}</p>
+                    <p className="text-sm text-(--muted)">{contact.fullName} · {contact.email}</p>
                   </div>
-                  <select defaultValue={contact.status} onChange={(e) => updateContactStatus(contact.id, e.target.value)} className="rounded-full border border-[var(--border)] bg-white px-3 py-2 text-sm">
+                  <select defaultValue={contact.status} onChange={(e) => updateContactStatus(contact.id, e.target.value)} className="rounded-full border border-(--border) bg-white px-3 py-2 text-sm">
                     {["NEW", "READ", "ANSWERED"].map((status) => (
                       <option key={status} value={status}>{status}</option>
                     ))}
                   </select>
                 </div>
-                <p className="mt-3 text-sm leading-6 text-[var(--muted)]">{contact.message}</p>
+                <p className="mt-3 text-sm leading-6 text-(--muted)">{contact.message}</p>
               </article>
             ))}
           </div>
@@ -334,7 +334,7 @@ export function AdminDashboard({ session }: Props) {
             return (
               <article key={user.id} className="rounded-3xl bg-white/70 p-4">
                 <p className="font-semibold">{user.fullName}</p>
-                <p className="text-sm text-[var(--muted)]">{user.email}</p>
+                <p className="text-sm text-(--muted)">{user.email}</p>
                 <div className="mt-4 flex flex-wrap gap-4 text-sm">
                   <label className="flex items-center gap-2">
                     <input
