@@ -34,6 +34,20 @@ También puedes levantar todo con Docker:
 docker compose up --build
 ```
 
+Para desarrollo con tu archivo `.env.dev`:
+
+```bash
+docker compose --env-file .env.dev up --build
+```
+
+Para producción usando la composición de producción y `.env.prod`:
+
+```bash
+docker compose -f docker-compose.prod.yml --env-file .env.prod up --build -d
+```
+
+Nota: `NEXT_PUBLIC_API_ASSET_URL` siempre debe apuntar a una URL pública accesible desde el navegador, por ejemplo `http://localhost:8080` en local o `https://tu-api.com` en producción. No uses `http://backend:8080` en variables `NEXT_PUBLIC_*` porque ese hostname solo existe dentro de Docker.
+
 Servicios:
 
 - Frontend: `http://localhost:3000`
