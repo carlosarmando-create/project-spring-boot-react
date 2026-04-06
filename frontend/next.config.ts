@@ -1,13 +1,8 @@
 import type { NextConfig } from "next";
 
-function toRemotePattern(value: string) {
+function toRemotePattern(value: string): URL | null {
   try {
-    const url = new URL(value);
-    return {
-      protocol: url.protocol.replace(":", ""),
-      hostname: url.hostname,
-      port: url.port || undefined,
-    };
+    return new URL(value);
   } catch {
     return null;
   }
@@ -21,12 +16,7 @@ const remotePatterns = [
   .filter((pattern): pattern is NonNullable<ReturnType<typeof toRemotePattern>> => pattern !== null)
   .filter(
     (pattern, index, array) =>
-      array.findIndex(
-        (candidate) =>
-          candidate.protocol === pattern.protocol &&
-          candidate.hostname === pattern.hostname &&
-          candidate.port === pattern.port,
-      ) === index,
+      array.findIndex((candidate) => candidate.toString() === pattern.toString()) === index,
   );
 
 const nextConfig: NextConfig = {
