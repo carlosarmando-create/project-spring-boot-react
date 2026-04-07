@@ -8,6 +8,7 @@ import java.util.Optional;
 
 public interface PlantRepository extends JpaRepository<Plant, Long> {
     List<Plant> findAllByActiveTrueOrderByCreatedAtDesc();
+    boolean existsPlantBySlug(String slug);
     Optional<Plant> findBySlug(String slug);
     Optional<Plant> findBySlugAndActiveTrue(String slug);
 }

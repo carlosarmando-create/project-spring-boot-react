@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { apiFetch } from "@/lib/api";
@@ -42,6 +42,7 @@ export function AdminDashboard({ session }: Props) {
   const [messageType, setMessageType] = useState<"success" | "error" | "">("");
   const [plantForm, setPlantForm] = useState(emptyPlant);
   const [categoryForm, setCategoryForm] = useState(emptyCategoryForm);
+  const plantImageInputRef = useRef<HTMLInputElement | null>(null);
 
   async function loadData() {
     const token = session.token;
@@ -94,12 +95,15 @@ export function AdminDashboard({ session }: Props) {
         token: session.token,
       });
       setPlantForm(emptyPlant);
+      if (plantImageInputRef.current) {
+        plantImageInputRef.current.value = "";
+      }
       setMessageType("success");
-      setMessage("Producto creado correctamente.");
+      setMessage("Se creó correctamente el producto.");
       await loadData();
     } catch (error) {
       setMessageType("error");
-      setMessage(error instanceof Error ? error.message : "No se pudo crear el producto.");
+      setMessage(error instanceof Error ? error.message : "No se creó correctamente el producto.");
     }
   }
 
@@ -221,7 +225,7 @@ export function AdminDashboard({ session }: Props) {
               <option key={category.id} value={category.id}>{category.name}</option>
             ))}
           </select>
-          <input type="file" accept="image/*" onChange={(e) => setPlantForm({ ...plantForm, image: e.target.files?.[0] ?? null })} className="rounded-2xl border border-(--border) bg-white px-4 py-3" />
+          <input ref={plantImageInputRef} type="file" accept="image/*" onChange={(e) => setPlantForm({ ...plantForm, image: e.target.files?.[0] ?? null })} className="rounded-2xl border border-(--border) bg-white px-4 py-3" />
           <div className="flex gap-4">
             <label className="flex items-center gap-2 text-sm">
               <input type="checkbox" checked={plantForm.featured} onChange={(e) => setPlantForm({ ...plantForm, featured: e.target.checked })} />

@@ -5,6 +5,7 @@ import com.plantstore.backend.dto.plant.PlantResponse;
 import com.plantstore.backend.entity.Category;
 import com.plantstore.backend.entity.Plant;
 import com.plantstore.backend.entity.PlantImage;
+import com.plantstore.backend.exception.BadRequestException;
 import com.plantstore.backend.exception.ResourceNotFoundException;
 import com.plantstore.backend.repository.CategoryRepository;
 import com.plantstore.backend.repository.PlantRepository;
@@ -51,6 +52,9 @@ public class PlantServiceImpl implements PlantService {
     @Override
     @Transactional
     public PlantResponse create(PlantRequest request) {
+        if (plantRepository.existsPlantBySlug(request.getSlug())) {
+            throw new BadRequestException("Ya existe un producto con ese slug.");
+        }
         Plant plant = new Plant();
         apply(plant, request);
         attachPrimaryImage(plant, request);
@@ -62,6 +66,9 @@ public class PlantServiceImpl implements PlantService {
     public PlantResponse update(Long id, PlantRequest request) {
         Plant plant = plantRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Producto no encontrado"));
+        if (!plant.getSlug().equals(request.getSlug()) && plantRepository.existsPlantBySlug(request.getSlug())) {
+            throw new BadRequestException("Ya existe un producto con ese slug.");
+        }
         apply(plant, request);
 
         if (request.getImage() != null && !request.getImage().isEmpty()) {
