@@ -12,7 +12,8 @@ export default function ContactPage() {
     setLoading(true);
     setMessage("");
 
-    const formData = new FormData(event.currentTarget);
+    const form = event.currentTarget;
+    const formData = new FormData(form);
     const payload = {
       fullName: formData.get("fullName"),
       email: formData.get("email"),
@@ -27,7 +28,7 @@ export default function ContactPage() {
         body: JSON.stringify(payload),
       });
       setMessage("Tu mensaje fue enviado correctamente.");
-      event.currentTarget.reset();
+      form.reset();
     } catch (error) {
       setMessage(error instanceof Error ? error.message : "No se pudo enviar el mensaje.");
     } finally {

@@ -91,7 +91,10 @@ export function AdminDashboard({ session }: Props) {
 
   async function handleCategorySubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const formData = new FormData(event.currentTarget);
+    setMessage("");
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
 
     try {
       await apiFetch("/categories", {
@@ -104,11 +107,11 @@ export function AdminDashboard({ session }: Props) {
           active: true,
         }),
       });
-      event.currentTarget.reset();
-      setMessage("Categoría creada correctamente.");
-      await loadData();
+      form.reset();
+      setMessage("Se creó correctamente la categoría.");
+      loadData().catch(() => null);
     } catch (error) {
-      setMessage(error instanceof Error ? error.message : "No se pudo crear la categoría.");
+      setMessage("No se creó correctamente la categoría.");
     }
   }
 
