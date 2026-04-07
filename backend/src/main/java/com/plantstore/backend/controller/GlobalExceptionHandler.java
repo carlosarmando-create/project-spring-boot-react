@@ -2,6 +2,7 @@ package com.plantstore.backend.controller;
 
 import com.plantstore.backend.exception.BadRequestException;
 import com.plantstore.backend.exception.ResourceNotFoundException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -39,6 +40,20 @@ public class GlobalExceptionHandler {
         }
         body.put("errors", errors);
         return ResponseEntity.badRequest().body(body);
+    }
+
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ResponseEntity<Map<String, Object>> handleDataIntegrityViolation(DataIntegrityViolationException exception) {
+        String message = "No se pudo guardar el registro porque ya existe un dato duplicado.";
+        String detail = exception.getMostSpecificCause() != null ? exception.getMostSpecificCause().getMessage() : "";
+
+        if (detail.contains("(name)=")) {
+            message = "Ya existe una categoría con ese nombre.";
+        } else if (detail.contains("(slug)=")) {
+            message = "Ya existe una categoría con ese slug.";
+        }
+
+        return buildResponse(HttpStatus.CONFLICT, message);
     }
 
     @ExceptionHandler(Exception.class)

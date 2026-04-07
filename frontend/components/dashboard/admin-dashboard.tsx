@@ -26,6 +26,12 @@ const emptyPlant = {
   image: null as File | null,
 };
 
+const emptyCategoryForm = {
+  name: "",
+  slug: "",
+  description: "",
+};
+
 export function AdminDashboard({ session }: Props) {
   const [plants, setPlants] = useState<Plant[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
@@ -33,7 +39,9 @@ export function AdminDashboard({ session }: Props) {
   const [contacts, setContacts] = useState<ContactMessage[]>([]);
   const [users, setUsers] = useState<UserSummary[]>([]);
   const [message, setMessage] = useState("");
+  const [messageType, setMessageType] = useState<"success" | "error" | "">("");
   const [plantForm, setPlantForm] = useState(emptyPlant);
+  const [categoryForm, setCategoryForm] = useState(emptyCategoryForm);
 
   async function loadData() {
     const token = session.token;
@@ -52,12 +60,16 @@ export function AdminDashboard({ session }: Props) {
   }
 
   useEffect(() => {
-    loadData().catch((error) => setMessage(error instanceof Error ? error.message : "No se pudo cargar el panel."));
+    loadData().catch((error) => {
+      setMessageType("error");
+      setMessage(error instanceof Error ? error.message : "No se pudo cargar el panel.");
+    });
   }, [session.token]);
 
   async function handlePlantSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setMessage("");
+    setMessageType("");
 
     const formData = new FormData();
     formData.append("name", plantForm.name);
@@ -82,9 +94,11 @@ export function AdminDashboard({ session }: Props) {
         token: session.token,
       });
       setPlantForm(emptyPlant);
+      setMessageType("success");
       setMessage("Producto creado correctamente.");
       await loadData();
     } catch (error) {
+      setMessageType("error");
       setMessage(error instanceof Error ? error.message : "No se pudo crear el producto.");
     }
   }
@@ -92,26 +106,26 @@ export function AdminDashboard({ session }: Props) {
   async function handleCategorySubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setMessage("");
-
-    const form = event.currentTarget;
-    const formData = new FormData(form);
+    setMessageType("");
 
     try {
       await apiFetch("/categories", {
         method: "POST",
         token: session.token,
         body: JSON.stringify({
-          name: formData.get("name"),
-          slug: formData.get("slug"),
-          description: formData.get("description"),
+          name: categoryForm.name,
+          slug: categoryForm.slug,
+          description: categoryForm.description,
           active: true,
         }),
       });
-      form.reset();
+      setCategoryForm(emptyCategoryForm);
+      setMessageType("success");
       setMessage("Se creó correctamente la categoría.");
-      loadData().catch(() => null);
+      await loadData();
     } catch (error) {
-      setMessage("No se creó correctamente la categoría.");
+      setMessageType("error");
+      setMessage(error instanceof Error ? error.message : "No se creó correctamente la categoría.");
     }
   }
 
@@ -124,6 +138,7 @@ export function AdminDashboard({ session }: Props) {
       });
       await loadData();
     } catch (error) {
+      setMessageType("error");
       setMessage(error instanceof Error ? error.message : "No se pudo actualizar el pedido.");
     }
   }
@@ -137,6 +152,7 @@ export function AdminDashboard({ session }: Props) {
       });
       await loadData();
     } catch (error) {
+      setMessageType("error");
       setMessage(error instanceof Error ? error.message : "No se pudo actualizar el contacto.");
     }
   }
@@ -150,6 +166,7 @@ export function AdminDashboard({ session }: Props) {
       });
       await loadData();
     } catch (error) {
+      setMessageType("error");
       setMessage(error instanceof Error ? error.message : "No se pudo actualizar el usuario.");
     }
   }
@@ -170,7 +187,15 @@ export function AdminDashboard({ session }: Props) {
         ))}
       </section>
 
-      {message && <div className="glass-card px-6 py-4 text-sm text-(--primary)">{message}</div>}
+      {message && (
+        <div
+          className={`glass-card px-6 py-4 text-sm ${
+            messageType === "error" ? "border border-red-200 bg-red-50 text-red-700" : "border border-emerald-200 bg-emerald-50 text-emerald-700"
+          }`}
+        >
+          {message}
+        </div>
+      )}
 
       <section className="grid gap-6 xl:grid-cols-2">
         <form onSubmit={handlePlantSubmit} className="glass-card grid gap-4 p-6">
@@ -215,9 +240,29 @@ export function AdminDashboard({ session }: Props) {
             <p className="text-sm uppercase tracking-[0.2em] text-(--primary)">Categorías</p>
             <h2 className="mt-2 text-2xl font-semibold">Crear categoría</h2>
           </div>
-          <input name="name" placeholder="Nombre de categoría" className="rounded-2xl border border-(--border) bg-white px-4 py-3" required />
-          <input name="slug" placeholder="Slug" className="rounded-2xl border border-(--border) bg-white px-4 py-3" required />
-          <textarea name="description" placeholder="Descripción" className="min-h-28 rounded-2xl border border-(--border) bg-white px-4 py-3" />
+          <input
+            name="name"
+            value={categoryForm.name}
+            onChange={(e) => setCategoryForm({ ...categoryForm, name: e.target.value })}
+            placeholder="Nombre de categoría"
+            className="rounded-2xl border border-(--border) bg-white px-4 py-3"
+            required
+          />
+          <input
+            name="slug"
+            value={categoryForm.slug}
+            onChange={(e) => setCategoryForm({ ...categoryForm, slug: e.target.value })}
+            placeholder="Slug"
+            className="rounded-2xl border border-(--border) bg-white px-4 py-3"
+            required
+          />
+          <textarea
+            name="description"
+            value={categoryForm.description}
+            onChange={(e) => setCategoryForm({ ...categoryForm, description: e.target.value })}
+            placeholder="Descripción"
+            className="min-h-28 rounded-2xl border border-(--border) bg-white px-4 py-3"
+          />
           <button className="rounded-full bg-(--secondary) px-5 py-3 font-medium text-(--foreground)">Crear categoría</button>
           <div className="mt-4 grid gap-3">
             {categories.map((category) => (

@@ -25,8 +25,11 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public CategoryResponse create(CategoryRequest request) {
+        if (categoryRepository.existsByName(request.name())) {
+            throw new BadRequestException("Ya existe una categoría con ese nombre.");
+        }
         if (categoryRepository.existsBySlug(request.slug())) {
-            throw new BadRequestException("Ya existe una categoría con ese slug");
+            throw new BadRequestException("Ya existe una categoría con ese slug.");
         }
         Category category = new Category();
         apply(category, request);
@@ -37,8 +40,11 @@ public class CategoryServiceImpl implements CategoryService {
     public CategoryResponse update(Long id, CategoryRequest request) {
         Category category = categoryRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Categoría no encontrada"));
+        if (!category.getName().equals(request.name()) && categoryRepository.existsByName(request.name())) {
+            throw new BadRequestException("Ya existe una categoría con ese nombre.");
+        }
         if (!category.getSlug().equals(request.slug()) && categoryRepository.existsBySlug(request.slug())) {
-            throw new BadRequestException("Ya existe una categoría con ese slug");
+            throw new BadRequestException("Ya existe una categoría con ese slug.");
         }
         apply(category, request);
         return toResponse(categoryRepository.save(category));
