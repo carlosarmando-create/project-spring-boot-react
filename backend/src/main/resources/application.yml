@@ -19,6 +19,10 @@ spring:
 
 server:
   port: ${SERVER_PORT:8080}
+  tomcat:
+    max-http-form-post-size: 35MB
+    max-swallow-size: 35MB
+    max-part-count: 50
 
 app:
   jwt:

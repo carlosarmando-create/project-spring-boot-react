@@ -38,8 +38,12 @@ export async function apiFetch<T>(path: string, options: RequestOptions = {}): P
   if (!response.ok) {
     let message = "Ocurrió un error al conectar con la API";
     try {
-      const payload = await response.json();
-      message = payload.message ?? message;
+      const payload = await response.json() as { message?: string; errors?: Record<string, string> };
+      if (payload.errors && Object.keys(payload.errors).length > 0) {
+        message = Object.values(payload.errors).join(" ");
+      } else {
+        message = payload.message ?? message;
+      }
     } catch {
       message = response.statusText || message;
     }

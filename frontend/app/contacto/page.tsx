@@ -5,12 +5,14 @@ import { apiFetch } from "@/lib/api";
 
 export default function ContactPage() {
   const [message, setMessage] = useState("");
+  const [messageType, setMessageType] = useState<"success" | "error" | "">("");
   const [loading, setLoading] = useState(false);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setLoading(true);
     setMessage("");
+    setMessageType("");
 
     const form = event.currentTarget;
     const formData = new FormData(form);
@@ -27,10 +29,12 @@ export default function ContactPage() {
         method: "POST",
         body: JSON.stringify(payload),
       });
-      setMessage("Tu mensaje fue enviado correctamente.");
+      setMessageType("success");
+      setMessage("Se creó correctamente el mensaje de contacto.");
       form.reset();
     } catch (error) {
-      setMessage(error instanceof Error ? error.message : "No se pudo enviar el mensaje.");
+      setMessageType("error");
+      setMessage(error instanceof Error ? error.message : "No se creó correctamente el mensaje de contacto.");
     } finally {
       setLoading(false);
     }
@@ -57,7 +61,11 @@ export default function ContactPage() {
           <button disabled={loading} className="rounded-full bg-(--primary) px-5 py-3 font-medium text-white disabled:opacity-70">
             {loading ? "Enviando..." : "Enviar mensaje"}
           </button>
-          {message && <p className="text-sm text-(--primary)">{message}</p>}
+          {message && (
+            <p className={`text-sm ${messageType === "error" ? "text-red-700" : "text-emerald-700"}`}>
+              {message}
+            </p>
+          )}
         </form>
       </section>
     </main>
